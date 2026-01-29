@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Tienda</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-links-container">
+                <div class="inicio-container">
+                    <div id="menu-btn" class="menu-btn">
+                        <div class="linea sup"></div>
+                        <div class="linea med"></div>
+                        <div class="linea inf"></div>
+                    </div>
+                    <a href="#" class="nombre-empresa"><i class="bi bi-shop-window empresa-icon"></i>Tienda</a>
+                </div>
+                <div id="nav-links" class="nav-links">
+                    <a href="#" class="nav-link">Inicio</a>
+                    <a href="#" class="nav-link">Comprar</a>
+                    <a href="#" class="nav-link">Categorías</a>
+                    <a href="#" class="nav-link">Nosotros</a>
+                </div>
+            </div>
+            <div class="cart-log-container">
+                <a href="#" class="nav-btn"><i class="bi bi-person nav-icon"></i></a>
+                <a href="#" class="nav-btn"><i class="bi bi-cart nav-icon"></i></a>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2026 - Tienda - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

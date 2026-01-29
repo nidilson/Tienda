@@ -1,0 +1,208 @@
+/* #region Estilos originales */
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+  color: var(--bs-secondary-color);
+  text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+  text-align: start;
+}
+/* #endregion */
+
+/* #region Estilos propios */
+*, *::before, *::after{
+    box-sizing: border-box;
+}
+:root {
+    --var-color-primario: #1A4BFF;
+    --var-color-secundario: #0F172A;
+    --var-color-terciario: #EAB308;
+    --var-color-texto: #0F172A;
+    --var-color-gris-osc: #475569;
+    --var-color-gris-clar: #F1F5F9;
+}
+@font-face {
+    font-family: 'Roboto';
+    src: url('/Resources/Fonts/Roboto-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal
+}
+@font-face {
+    font-family: 'RobotoBold';
+    src: url('/Resources/Fonts/Roboto-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'RobotoLight';
+    src: url('/Resources/Fonts/Roboto-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal
+}
+@font-face {
+    font-family: 'RobotoSemiBold';
+    src: url('/Resources/Fonts/Roboto-Medium.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal
+}
+a{
+    text-decoration: none;
+}
+body{
+    margin: 0px;
+}
+/* #endregion */
+
+
+/* #region Navbar */
+nav{
+    padding: 0rem 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    border-bottom: solid 1px var(--var-color-gris-osc)
+}
+
+.nombre-empresa{
+    font-family: RobotoSemiBold;
+    color: var(--var-color-texto);
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.nav-icon{
+    font-size: 1.5rem;
+    color: var(--var-color-texto);
+}
+.nav-btn{
+    background-color: var(--var-color-gris-clar);
+    height: 2.5rem;
+    width: 2.5rem;
+    display: flex;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    transition: all ease 0.3s;
+
+    &:hover{
+        background-color: rgba(26,75,255, 0.2);
+    }
+}
+.cart-log-container{
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-links {
+    display: none;
+    transition: all ease 0.3s;
+}
+.nav-links.active {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 1rem 0rem;
+    transition: all ease 0.3s;
+}
+.nav-link{
+    font-family: Roboto;
+    color: var(--var-color-texto);
+    transition: all ease 0.3s;
+
+    &:hover{
+        color: var(--var-color-primario);
+    }
+}
+.menu-btn{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+.active .linea:first-of-type {
+        transform: translate(0%, 180%) rotate(-45deg);
+    }
+.active .linea:last-of-type {
+    transform: translate(0%, -180%) rotate(45deg);
+}
+.active .linea:nth-last-of-type(2) {
+    display: none;
+}
+.linea {
+    width: 2rem;
+    height: 3px;
+    background-color: var(--var-color-gris-osc);
+    border-radius: 10px;
+    transition: all ease 0.3s;
+}
+.inicio-container{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+/* #endregion */
+
+/* #region main */
+main{
+    padding: 0rem 1rem;
+}
+/* #endregion */
+
+/* #region Estilos originales */
+/* #endregion */
+
+@media(min-width: 768px){
+    .menu-btn{
+        display: none;
+    }
+    .nav-links-container{
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+    }
+    .nav-links {
+        display: flex;
+        gap: 1rem;
+    }
+
+    nav {
+        padding: 0rem 3rem;
+    }
+    main {
+        padding: 0rem 3rem;
+    }
+
+}
+
+@media(min-width: 1024px){
+    nav {
+        padding: 0rem 8rem;
+    }
+    main {
+        padding: 0rem 10rem;
+    }
+}
