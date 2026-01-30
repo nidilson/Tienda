@@ -1,13 +1,21 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Tienda.Models;
+using Tienda.Models.data;
 
 namespace Tienda.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private TiendaContext _dbcontext;
+		public HomeController(TiendaContext db)
+		{
+            _dbcontext = db;
+		}
+		public IActionResult Index()
         {
+            ViewBag.Productos = _dbcontext.Productos.ToList();
             return View();
         }
 

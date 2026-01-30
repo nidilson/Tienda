@@ -74,6 +74,27 @@ a{
 body{
     margin: 0px;
 }
+h1{
+    font-family: RobotoBold;
+    font-size: 2.5rem;
+    margin: 0px;
+}
+h2 {
+    font-family: RobotoBold;
+    font-size: 1.7rem;
+    margin: 0px;
+}
+h3 {
+    font-family: RobotoSemiBold;
+    font-size: 1.3rem;
+    margin: 0px;
+}
+span {
+    font-family: Roboto;
+    font-size: 1rem;
+    color: var(--var-color-gris-osc);
+    margin: 0px;
+}
 /* #endregion */
 
 
@@ -169,8 +190,214 @@ nav{
 /* #region main */
 main{
     padding: 0rem 1rem;
+    background-color: var(--var-color-gris-clar);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* #region Banner */
+.banner{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0rem;
+    max-width: 900px;
+}
+
+.img-banner {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.banner-texto{
+    display: flex;
+    flex-direction: column;
+}
+.btn-principal {
+    border: none;
+    background-color: var(--var-color-primario);
+    max-width: 200px;
+    height: 3rem;
+    font-family: RobotoSemiBold;
+    font-size: 1.3rem;
+    color: white;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0rem;
+    box-shadow: 0px 5px 10px rgba(0,0,0,0.2);
+
+    &:hover {
+        background-color: rgba(26,75,255, 0.9);
+    }
 }
 /* #endregion */
+
+/* #region Nuevos productos */
+.nuevos-prods-cont{
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.titulo-prods {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 0rem;
+    gap: 1rem;
+    width: 100%;
+}
+.enlace{
+    font-family: Roboto;
+    color: var(--var-color-primario);
+
+    &:hover{
+        text-decoration: underline;
+    }
+}
+.prod-img {
+    width: 100%;
+}
+.producto-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    position: relative;
+    cursor: default;
+}
+.titulo-prod{
+    font-size: 1rem;
+}
+.productos-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    transition: ease 0.2s;
+    justify-items: center;
+}
+.prod-img-cont {
+    width: 100%;
+    max-width: 350px;
+    border-radius: 15px;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    position: relative;
+}
+.prod-img {
+    width: 100%;
+    border-radius: 15px;
+    object-fit: cover;
+    transition: ease 0.3s;
+    object-fit: cover;
+    object-position: 50% 50%;
+}
+.oferta-tag{
+    position: absolute;
+    z-index: 1;
+    background-color: var(--var-color-primario);
+    color: white;
+    width: 4rem;
+    height: 1.5rem;
+    border-radius: 5px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Roboto;
+    top: 5%;
+    left: 5%;
+}
+.agregar-btn {
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    height: 3rem;
+    width: 3rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--var-color-primario);
+    box-shadow: 0px 0px 10px;
+    position: absolute;
+    left: 80%;
+    top: 90%;
+    transition: all ease 0.2s;
+    opacity: 0;
+
+    &:hover {
+        background-color: var(--var-color-gris-clar);
+    }
+}
+.producto-card:hover .agregar-btn {
+    top: 80%;
+    opacity: 1;
+}
+.producto-card:hover .prod-img {
+    transform: scale(1.1);
+}
+.producto-card:hover .titulo-prod {
+    color: var(--var-color-primario);
+}
+.precio-cont{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: space-between;
+}
+.precio-prod{
+    font-size: 1.3rem;
+    color: var(--var-color-texto);
+    font-family: RobotoBold;
+}
+.precio-anterior{
+    text-decoration-line: line-through;
+}
+
+/* #endregion */
+
+/* #endregion */
+
+
+/* #region Suscripcion */
+.suscripcion-container {
+    margin: 2rem 0rem;
+    max-width: 400px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.suscripcion-form{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+.suscripcion-input{
+    height: 3rem;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--var-color-gris-clar);
+}
+/* #endregion */
+
 
 /* #region Estilos originales */
 /* #endregion */
@@ -195,6 +422,9 @@ main{
     main {
         padding: 0rem 3rem;
     }
+    .productos-container {
+        grid-template-columns: 1fr 1fr;
+    }
 
 }
 
@@ -204,5 +434,25 @@ main{
     }
     main {
         padding: 0rem 10rem;
+    }
+    .banner{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+    }
+    .img-banner-cont{
+        max-width: 500px;
+    }
+    .banner-texto{
+        display: flex;
+        flex-direction: column;
+    }
+    .productos-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        
+        /*grid-template-columns: repeat(4, minmax(0, 1fr));*/
     }
 }
