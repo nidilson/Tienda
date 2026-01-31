@@ -1,22 +1,24 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 using Tienda.Models;
 using Tienda.Models.data;
+using Tienda.Services;
 
 namespace Tienda.Controllers
 {
     public class HomeController : Controller
     {
-        private TiendaContext _dbcontext;
-		public HomeController(TiendaContext db)
+        private IDbService<Producto> _productoService;
+		public HomeController(IDbService<Producto> prodService)
 		{
-            _dbcontext = db;
+            _productoService = prodService;
 		}
 		public IActionResult Index()
         {
-            ViewBag.Productos = _dbcontext.Productos.ToList();
-            return View();
+            ViewBag.Productos = _productoService.GetAll();
+            
+			return View(new Carrito());
         }
 
         public IActionResult Privacy()

@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Tienda.Models.data;
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8" />
@@ -29,7 +30,7 @@
             </div>
             <div class="cart-log-container">
                 <a href="#" class="nav-btn"><i class="bi bi-person nav-icon"></i></a>
-                <a href="#" class="nav-btn"><i class="bi bi-cart nav-icon"></i></a>
+                <a id="cart-toggle" href="#" class="nav-btn"><i class="bi bi-cart nav-icon"></i></a>
             </div>
         </nav>
     </header>
@@ -39,13 +40,49 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
+    <footer class="footer">
+        <div class ="footer-cont">
+            <div class="footer-encabezado">
+			    <div class="logo-footer">
+				    <a href="#" class="nombre-empresa-footer"><i class="bi bi-shop-window empresa-icon-footer"></i>Tienda</a>
+			    </div>
+                <span>Definiendo el lujo moderno a través de diseño atemporal y calidad sin igual</span>
+            </div>
+        
+            <div class="enlaces-footer-container">
+                <div class="seccion-footer">
+                    <h3>Comprar</h3>
+                    <a class="footer-link" href="#">Productos nuevos</a>
+                    <a class="footer-link" href="#">Más vendidos</a>
+                    <a class="footer-link" href="#">Ofertas</a>
+                    <a class="footer-link" href="#">Todos los productos</a>
+                </div>
+                <div class="seccion-footer">
+                    <h3>Ayuda</h3>
+                    <a class="footer-link" href="#">Rastrear orden</a>
+                    <a class="footer-link" href="#">Política de envío</a>
+                    <a class="footer-link" href="#">Devoluciones</a>
+                    <a class="footer-link" href="#">Preguntas frecuentes</a>
+                </div>
+                <div class="seccion-footer">
+                    <h3>Compañía</h3>
+                    <a class="footer-link" href="#">Nosotros</a>
+                    <a class="footer-link" href="#">Sostenibilidad</a>
+                    <a class="footer-link" href="#">Carreras</a>
+                    <a class="footer-link" href="#">Contacto</a>
+                </div>
+            </div>
+        </div>
+        <div class="derechos-footer">
             &copy; 2026 - Tienda - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+        <div id="cart" class="cart">
+            <partial name="../PartialViews/_carritoPartial" model="@new List<CarritoDetalle>()"></partial>
+        </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/carrito.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
