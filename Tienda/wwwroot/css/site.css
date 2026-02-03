@@ -89,6 +89,11 @@ h3 {
     font-size: 1.3rem;
     margin: 0px;
 }
+h4{
+    font-family:Roboto;
+    margin: 0;
+    padding: 0.5rem 0rem;
+}
 span {
     font-family: Roboto;
     font-size: 1rem;
@@ -529,7 +534,9 @@ main {
 .boton-cerrar-carrito{
     font-size: 1.5rem;
 }
-
+.boton-cerrar-carrito i{
+    pointer-events: none;
+}
 .total-container{
     background-color: var(--var-color-gris-clar);
     padding: 1rem 1.5rem;
@@ -560,6 +567,69 @@ main {
     height: 100px;
     width: 100px;
 }
+.list-cart-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    gap: 1rem;
+}
+.prod-cart-card{
+    width: 100%;
+}
+.det-prod-cart{
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+}
+.cant-prod-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+.det-prod-cont-cart .precio-prod{
+    color: var(--var-color-primario);
+}
+.img-prod-cart{
+    aspect-ratio: 1/1;
+    width: 90px;
+    height: 90px;
+    object-fit: fill;
+    border-radius: 10px;
+}
+.detalles-cart{
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+.eliminar-btn{
+    background-color: transparent;
+    border: none;
+    color: var(--var-color-gris-osc);
+    font-size: 1.2rem;
+    &:hover{
+        color: firebrick;
+    }
+}
+.cant-btn{
+    background-color: var(--var-color-gris-clar);
+    border: none;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 10px;
+    transition: ease 0.3s;
+
+    &:hover{
+        background-color: var(--var-color-gris-osc);
+        color: white;
+    }
+}
+.cantidad-prod{
+    font-family: RobotoBold;
+}
 /* #endregion */
 /* #region Estilos originales */
 /* #endregion */
@@ -580,7 +650,7 @@ main {
     }
 
     nav {
-        padding: 0rem 3rem;
+        padding: 0.5rem 3rem;
     }
 
     main {

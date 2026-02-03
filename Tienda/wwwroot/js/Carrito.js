@@ -1,8 +1,6 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
-    const cerrarCartBtn = document.getElementById("boton-cerrar-carrito");
-    const cart = document.getElementById("cart");
-
-    cerrarCartBtn.addEventListener("click", () => {
+﻿document.addEventListener("click", (e) => {
+    if (e.target.matches(".boton-cerrar-carrito")) {
+        const cart = document.getElementById("cart");
         cart.classList.toggle("abierto");
-    })
-})
+    }
+});

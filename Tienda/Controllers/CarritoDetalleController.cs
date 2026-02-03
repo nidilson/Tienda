@@ -98,7 +98,7 @@ namespace Tienda.Controllers
 			else
 			{
 				existe.Cantidad += detalle.Cantidad;
-				detalleOut = detalle;
+				detalleOut = existe;
 				return true;
 			}
 		}

@@ -23,20 +23,22 @@
 			@foreach (var item in Model)
 		{
 			<div class="prod-cart-card">
-				<div class="det-prod-cart">
-					<div class="img-prod-cont-cart">
-						<img class="img-prod-cart" src="@item.Producto.Imagen"/>
+				<div class="detalles-cart">
+					<div class="det-prod-cart">
+						<div class="img-prod-cont-cart">
+							<img class="img-prod-cart" src="@item.Producto.Imagen"/>
+						</div>
+						<div class="det-prod-cont-cart">
+							<h4>@item.Producto.Nombre</h4>
+							<span class="precio-prod">@item.Producto.Precio.ToString("C", new CultureInfo("es-CR"))</span>
+						</div>
 					</div>
-					<div class="det-prod-cont-cart">
-						<h4>@item.Producto.Nombre</h4>
-						<span class="precio-prod">@item.Producto.Precio.ToString("C", new CultureInfo("es-CR"))</span>
-					</div>
-					<button class="eliminar-brn"><i class="bi bi-trash"></i></button>
+					<button class="eliminar-btn"><i class="bi bi-trash-fill"></i></button>
 				</div>
 				<div class="cant-prod-container">
-					<button id="menos-btn" data-idProducto="@item.CarritoDetalleId"><i class="bi bi-dash-lg"></i></button>
-					<div id="cantidad-prod" data-idProducto="@item.CarritoDetalleId">@item.Cantidad</div>
-					<button id="mas-btn" data-idProducto="@item.CarritoDetalleId"><i class="bi bi-plus-lg"></i></button>
+					<button class="cant-btn" data-idProducto="@item.CarritoDetalleId"><i class="bi bi-dash-lg"></i></button>
+					<div class="cantidad-prod" data-idProducto="@item.CarritoDetalleId">@item.Cantidad</div>
+					<button class="cant-btn" data-idProducto="@item.CarritoDetalleId"><i class="bi bi-plus-lg"></i></button>
 				</div>
 			</div>
 		}
@@ -60,6 +62,4 @@
 		</div>
 	</div>
 
-	@section Scripts{
-		<script src="~/js/carrito.js" asp-append-version="true"></script>
-	}
+	
