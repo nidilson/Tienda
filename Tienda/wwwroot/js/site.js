@@ -35,7 +35,6 @@ async function AgregarACarrito(idProd) {
                 "cantidad": 1
             })
         });
-        const data = await response.json()
         if (!response.ok) {
             throw new Error(`Error del servidor: ${response.status}: ${response.statusText} - ${data.message}`)
         }
@@ -46,6 +45,7 @@ async function AgregarACarrito(idProd) {
 
 
 }
+
 async function ObtenerCarrito() {
     const carritoContainer = document.getElementById("cart");
     try {

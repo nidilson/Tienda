@@ -63,9 +63,11 @@ namespace Tienda.Controllers
 			
 			try
 			{
-				if (ContieneArticulo(carrito, detalle, out detalle))
+				CarritoDetalle? detalleCarrito = ContieneArticulo(carrito, detalle);
+				if (detalleCarrito != null)
 				{
-					detalle = _detalleService.Update(detalle);
+					detalleCarrito.Cantidad += detalle.Cantidad;
+					detalle = _detalleService.Update(detalleCarrito);
 				}
 				else
 				{
@@ -76,31 +78,73 @@ namespace Tienda.Controllers
 			{
 				return BadRequest(new { message = ex.Message });
 			}
-
-			DetalleCarritoOutDTO detalleADevolver = new DetalleCarritoOutDTO
-			{
-				Id = detalle.CarritoDetalleId,
-				Producto = detalle.Producto.Nombre,
-				Cantidad = detalle.Cantidad,
-				Precio = detalle.PrecioUnitario
-			};
-			return Ok(detalleADevolver);
+			return Created();
 		}
 
-		private bool ContieneArticulo(Carrito carrito, CarritoDetalle detalle, out CarritoDetalle detalleOut)
+		[HttpPatch("DetalleCarrito")]
+		public IActionResult ModificarCantidad([FromBody] DetalleCarritoInDTO dto)
+		{
+			string? carritoJson = HttpContext.Session.GetString("carrito");
+			if (carritoJson == null)
+			{
+				return NotFound(new { message = "No existe un carrito a actualizar" });
+			}
+			Carrito carrito = JsonSerializer.Deserialize<Carrito>(carritoJson);
+			Producto producto = _productoService.GetById(dto.ProductoId);
+
+			CarritoDetalle detalle = new CarritoDetalle
+			{
+				CarritoId = carrito.CarritoId,
+				ProductoId = producto.ProductoId,
+				Cantidad = dto.Cantidad,
+				PrecioUnitario = producto.Precio
+			};
+
+			try
+			{
+				CarritoDetalle? detalleCarrito = ContieneArticulo(carrito, detalle);
+				if (detalleCarrito == null)
+				{
+					throw new Exception("No se tiene el elemento en el carrito");
+				}
+				detalleCarrito.Cantidad = detalle.Cantidad;
+				detalle = _detalleService.Update(detalleCarrito);
+			}
+			catch (Exception ex)
+			{
+				return BadRequest(new { message = ex.Message });
+			}
+			return Ok();
+		}
+		[HttpDelete("DetalleCarrito")]
+		public IActionResult EliminarDetalleCarrito([FromBody] DetalleCarritoInDTO dto)
+		{
+			string? carritoJson = HttpContext.Session.GetString("carrito");
+			if (carritoJson == null)
+			{
+				return NotFound(new { message = "No existe un carrito a actualizar" });
+			}			
+
+			try
+			{
+				CarritoDetalle detalle = _detalleService.GetById(dto.DetalleId);
+				if (detalle == null)
+				{
+					throw new Exception("No se tiene el elemento en el carrito");
+				}
+				
+				detalle = _detalleService.Delete(dto.DetalleId);
+			}
+			catch (Exception ex)
+			{
+				return BadRequest(new { message = ex.Message });
+			}
+			return Ok();
+		}
+		private CarritoDetalle ContieneArticulo(Carrito carrito, CarritoDetalle detalle)
 		{
 			CarritoDetalle? existe = _detalleService.GetAll().Where(det => det.CarritoId == carrito.CarritoId && det.ProductoId == detalle.ProductoId).FirstOrDefault();
-			if (existe == null)
-			{
-				detalleOut = detalle;
-				return false;
-			}
-			else
-			{
-				existe.Cantidad += detalle.Cantidad;
-				detalleOut = existe;
-				return true;
-			}
+			return existe;
 		}
 
 		public Carrito CrearCarrito()

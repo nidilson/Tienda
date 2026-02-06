@@ -33,12 +33,12 @@
 							<span class="precio-prod">@item.Producto.Precio.ToString("C", new CultureInfo("es-CR"))</span>
 						</div>
 					</div>
-					<button class="eliminar-btn"><i class="bi bi-trash-fill"></i></button>
+					<button class="eliminar-btn" data-id-detalle="@item.CarritoDetalleId"><i class="bi bi-trash-fill"></i></button>
 				</div>
 				<div class="cant-prod-container">
-					<button class="cant-btn" data-idProducto="@item.CarritoDetalleId"><i class="bi bi-dash-lg"></i></button>
+					<button class="cant-btn disminuir-cantidad" data-id-producto="@item.ProductoId" data-cantidad="@item.Cantidad"><i class="bi bi-dash-lg"></i></button>
 					<div class="cantidad-prod" data-idProducto="@item.CarritoDetalleId">@item.Cantidad</div>
-					<button class="cant-btn" data-idProducto="@item.CarritoDetalleId"><i class="bi bi-plus-lg"></i></button>
+					<button class="cant-btn aumentar-cantidad" data-id-producto="@item.ProductoId" data-cantidad="@item.Cantidad"><i class="bi bi-plus-lg"></i></button>
 				</div>
 			</div>
 		}

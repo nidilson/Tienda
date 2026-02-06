@@ -614,6 +614,9 @@ main {
         color: firebrick;
     }
 }
+.eliminar-btn i{
+    pointer-events: none;
+}
 .cant-btn{
     background-color: var(--var-color-gris-clar);
     border: none;
@@ -626,6 +629,9 @@ main {
         background-color: var(--var-color-gris-osc);
         color: white;
     }
+}
+.cant-btn i{
+    pointer-events: none;
 }
 .cantidad-prod{
     font-family: RobotoBold;
