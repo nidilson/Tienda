@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Tienda.Models;
+using Tienda.Models.data;
+using Tienda.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +10,21 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<TiendaContext>(opt =>
 {
-    opt.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
+    //Se debe tener configurada la variable de entorno con la conection string de la base de datos
+    opt.UseSqlServer(Environment.GetEnvironmentVariable("CONNECTION"));
+});
+
+builder.Services.AddScoped<IDbService<Producto>, ProductoService>();
+builder.Services.AddScoped<IDbService<Carrito>, CarritoService>();
+builder.Services.AddScoped<IDbService<CarritoDetalle>, DetalleCarritoService>();
+
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(options =>
+{
+	options.IdleTimeout = TimeSpan.FromMinutes(30);
+	options.Cookie.HttpOnly = true;
+	options.Cookie.IsEssential = true;
 });
 
 var app = builder.Build();
@@ -22,6 +38,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseSession();
 app.UseRouting();
 
 app.UseAuthorization();

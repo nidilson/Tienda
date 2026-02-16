@@ -1,0 +1,73 @@
+﻿@using Tienda.Models.data
+@using System.Globalization;
+@model List<CarritoDetalle>;
+
+@{
+	decimal total = 0m;
+	decimal subtotal = 0m;
+}
+
+	<div class="carrito">
+		<div class="encabezado-cart">
+			<div class="titulo-cart">
+				<div class="icono-cart-container">
+					<i class="bi bi-bag-fill"></i>
+				</div>
+				<div>
+					<h2>Tu carrito</h2>
+					<span>@Model.Count artículos en tu carrito</span>
+				</div>
+			</div>
+			<div id="boton-cerrar-carrito" class="boton-cerrar-carrito">
+					<i class="bi bi-x-lg"></i>
+			</div>
+
+		</div>
+		<hr />
+		<div class="list-cart-container">
+			@foreach (var item in Model)
+		{
+			<div class="prod-cart-card">
+				<div class="detalles-cart">
+					<div class="det-prod-cart">
+						<div class="img-prod-cont-cart">
+							<img class="img-prod-cart" src="@item.Producto.Imagen"/>
+						</div>
+						<div class="det-prod-cont-cart">
+							<h4>@item.Producto.Nombre</h4>
+							<span class="precio-prod">@item.Producto.Precio.ToString("C", new CultureInfo("es-CR"))</span>
+						</div>
+					</div>
+					<button class="eliminar-btn" data-id-detalle="@item.CarritoDetalleId"><i class="bi bi-trash-fill"></i></button>
+				</div>
+				<div class="cant-prod-container">
+					<button class="cant-btn disminuir-cantidad" data-id-producto="@item.ProductoId" data-cantidad="@item.Cantidad"><i class="bi bi-dash-lg"></i></button>
+					<div class="cantidad-prod" data-idProducto="@item.CarritoDetalleId">@item.Cantidad</div>
+					<button class="cant-btn aumentar-cantidad" data-id-producto="@item.ProductoId" data-cantidad="@item.Cantidad"><i class="bi bi-plus-lg"></i></button>
+				</div>
+			</div>
+				
+			subtotal += item.PrecioUnitario * item.Cantidad;
+			total += item.PrecioUnitario * item.Cantidad;
+		}
+	</div>
+		<div class="total-container">
+			<div class="valor-cont">
+				<span>Subtotal</span>
+			<span class="precio-prod">@subtotal.ToString("C", new CultureInfo("es-CR"))</span>
+			</div>
+			<div class="valor-cont">
+				<span>Envío</span>
+				<span class="precio-prod">Gratis</span>
+			</div>
+			<hr />
+			<div class="valor-cont">
+				<h3>Total</h3>
+			<span class="precio-prod">@total.ToString("C", new CultureInfo("es-CR"))</span>
+			</div>
+			<button class="btn-principal btn-ancho">Pagar</button>
+			<a class="seguir-comprando">Seguir comprando</a>
+		</div>
+	</div>
+
+	

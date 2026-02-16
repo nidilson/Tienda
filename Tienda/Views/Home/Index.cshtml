@@ -1,8 +1,59 @@
-﻿@{
+﻿@using Tienda.Models.data;
+@using System.Globalization;
+@{
+    List<Producto> productos = ViewBag.Productos;
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="banner">
+    <div class="img-banner-cont">
+        <img class="img-banner" src="~/Resources/prods/banner.jpg" alt="Imagen de productos de belleza"/>
+    </div>
+    <div class="banner-texto">
+        <h1>Eleve su día a día</h1>
+        <span>Experimente la unión de lujo y utilidad con nuestra colección de esencias premium.</span>
+        <button class="btn-principal">Comprar</button>
+    </div>
+</div>
+
+<div class="nuevos-prods-cont">
+    <div class="titulo-prods">
+        <h2 >Productos nuevos</h2>
+        <a class="enlace">Ver más</a>
+    </div>
+    <div class="productos-container">
+        @foreach (Producto producto in productos)
+        {
+            <div class="producto-card">
+                <div class="prod-img-cont">
+                    @if (producto.Oferta ?? false)
+                    {
+                        <div class="oferta-tag">Oferta</div>                       
+                    }
+                    <img class="prod-img" src="@producto.Imagen" />
+                    <button data-id="@producto.ProductoId" class="agregar-btn"><i class="bi bi-cart-plus icon-btn"></i></button>
+                </div>
+                <h3 class="titulo-prod">@producto.Nombre</h3>
+                <div class="precio-cont">
+                    <span class="precio-prod">@producto.Precio.ToString("C", new CultureInfo("es-CR"))</span>
+                    @if (producto.Oferta ?? false)
+                    {
+                        <span class="precio-anterior">@producto.PrecioAnterior?.ToString("C", new CultureInfo("es-CR"))</span>
+                    }
+                </div>            
+            </div>            
+        }        
+    </div>
+</div>
+
+<div class="suscripcion-container">
+    <h2>Esté a la moda</h2>
+    <span>Si deseas obtener ofertas, nuevos productos y tips de belleza antes que nadie, suscríbase a nuestra newsletter.</span>
+    <div class="formulario-suscripcion">
+        <form class="suscripcion-form" asp-action="Suscripcion" asp-controller="Home">
+            <input class="suscripcion-input" type="email" placeholder="Ingrese su email" name="email" required/>
+            <input class="btn-principal" type="submit" value="Suscribirse"/>
+        </form>
+    </div>
+
 </div>
