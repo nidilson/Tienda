@@ -2,6 +2,11 @@
 @using System.Globalization;
 @model List<CarritoDetalle>;
 
+@{
+	decimal total = 0m;
+	decimal subtotal = 0m;
+}
+
 	<div class="carrito">
 		<div class="encabezado-cart">
 			<div class="titulo-cart">
@@ -41,12 +46,15 @@
 					<button class="cant-btn aumentar-cantidad" data-id-producto="@item.ProductoId" data-cantidad="@item.Cantidad"><i class="bi bi-plus-lg"></i></button>
 				</div>
 			</div>
+				
+			subtotal += item.PrecioUnitario * item.Cantidad;
+			total += item.PrecioUnitario * item.Cantidad;
 		}
-		</div>
+	</div>
 		<div class="total-container">
 			<div class="valor-cont">
 				<span>Subtotal</span>
-				<span class="precio-prod">Subtotal</span>
+			<span class="precio-prod">@subtotal.ToString("C", new CultureInfo("es-CR"))</span>
 			</div>
 			<div class="valor-cont">
 				<span>Envío</span>
@@ -55,7 +63,7 @@
 			<hr />
 			<div class="valor-cont">
 				<h3>Total</h3>
-				<span class="precio-prod">TOTAL</span>
+			<span class="precio-prod">@total.ToString("C", new CultureInfo("es-CR"))</span>
 			</div>
 			<button class="btn-principal btn-ancho">Pagar</button>
 			<a class="seguir-comprando">Seguir comprando</a>

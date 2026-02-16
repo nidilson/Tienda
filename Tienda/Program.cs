@@ -10,7 +10,8 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<TiendaContext>(opt =>
 {
-    opt.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
+    //Se debe tener configurada la variable de entorno con la conection string de la base de datos
+    opt.UseSqlServer(Environment.GetEnvironmentVariable("CONNECTION"));
 });
 
 builder.Services.AddScoped<IDbService<Producto>, ProductoService>();
